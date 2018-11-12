@@ -6,19 +6,20 @@
 
 class Graph
 {
-protected:
-    int vertexCount;
-    int edgesCount;
-    bool isDirected;
-    Node** adjacencyList;
-
 public:
-    Graph();
-    Graph(int, bool);
-    virtual ~Graph();
+	Graph();
+	Graph(int, bool);
+	virtual ~Graph();
 
-    void print();
-    void addEdge(int, int, int);
-    int getPathWeight(int, int);
-    int getVertexCount() const;
+	void print();
+	void addEdge(int, int, int);
+	void removeEdge(int, int);
+	int getVertexCount() const;
+	int getPathWeight(int start, int end);
+
+protected:
+	int vertexCount;
+	int edgesCount;
+	bool isDirected;
+	int **matrix;
 };

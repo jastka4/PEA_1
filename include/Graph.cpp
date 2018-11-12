@@ -3,65 +3,59 @@
 Graph::Graph(int vertexCount, bool isDirected)
     : edgesCount(0), vertexCount(vertexCount), isDirected(isDirected)
 {
-    adjacencyList = new Node*[vertexCount];
+    matrix = new int*[vertexCount];
 
-    for (int i = 0; i < vertexCount; i++)
-        adjacencyList[i] = nullptr;
+    for (size_t i = 0; i < vertexCount; i++)
+    {
+        matrix[i] = new int[vertexCount];
+
+        for (size_t j = 0; j < vertexCount; j++)
+            matrix[i][j] = 0;
+    }
 }
 
 Graph::~Graph()
 {
-    for (int i = 0; i < vertexCount; i++)
-        delete adjacencyList[i];
+    for (size_t i = 0; i < vertexCount; i++)
+        delete[] matrix[i];
 
-    delete[] adjacencyList;
+    delete[] matrix;
 }
 
 
 void Graph::print()
 {
-    Node* node;
+    std::cout << "Incidence matrix representation: " << std::endl;
 
-    std::cout << "\nList representation:" << std::endl;
-    std::cout << std::endl;
+    size_t i, j;
 
-    for (int i = 0; i < vertexCount; i++)
+    for (i = 0; i < vertexCount; i++)
     {
-        std::cout << "[" << i << "] =";
-        node = adjacencyList[i];
+        for (j = 0; j < vertexCount; j++)
+            std::cout << std::setw(4) << matrix[i][j] << "  ";
 
-        while (node)
-        {
-            std::cout << std::setw(3) << node->vertex;
-            node = node->next;
-        }
         std::cout << std::endl;
     }
 }
 
 void Graph::addEdge(int origin, int destination, int weight)
 {
-    Node* newNode = new Node();
-    newNode->vertex = destination;
-    newNode->weight = weight;
-    newNode->next = adjacencyList[origin];
-    adjacencyList[origin] = newNode;
-
-    if (!isDirected)
+    if (origin >= 0 && origin < vertexCount && destination >= 0 && destination < vertexCount)
     {
-        newNode = new Node();
-        newNode->vertex = origin;
-        newNode->weight = weight;
-        newNode->next = adjacencyList[destination];
-        adjacencyList[destination] = newNode;
-    }
+        matrix[origin][destination] = 1 * weight;
+//        if (isDirected)
+//            matrix[destination][origin] = -1 * weight;
+//        else
+//            matrix[destination][origin] = 1 * weight;
 
-    edgesCount++;
+        edgesCount++;
+    }
+    // else throws error
 }
 
 int Graph::getPathWeight(int i, int j)
 {
-    return adjacencyList[i][j].weight;
+    return matrix[i][j];
 }
 
 int Graph::getVertexCount() const
