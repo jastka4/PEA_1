@@ -3,16 +3,17 @@
 //
 
 #include "ATSP.h"
-#include <bits/stdc++.h> //int max
+#include <climits> //int max
 
 // implementation of traveling Salesman Problem
-int ATSP::getShortestRoute(int graph[][6], int s)
+int ATSP::getShortestRoute(Graph *graph, int start)
 {
     // store all vertex apart from source vertex
     Array *vertex = new Array();
-    for (int i = 0; i < 6; i++)
+
+    for (int i = 0; i < graph->getVertexCount(); i++)
     {
-        if (i != s)
+        if (i != start)
         {
             vertex->insertAtEnd(i);
         }
@@ -33,15 +34,15 @@ int ATSP::getShortestRoute(int graph[][6], int s)
         permutations.pop_back();
 
         // compute current path weight
-        int k = s;
+        int k = start;
         for (int i = 0; i < vertex->getSize(); i++)
         {
-            current_pathweight += graph[k][vertex->get(i)];
+            current_pathweight += graph->getPathWeight(k, vertex->get(i));
             k = vertex->get(i);
-            std::cout << "K: " << k << " S: " << s << std::endl;
+            std::cout << "K: " << k << " S: " << start << std::endl;
         }
         //std::cout << graph[k][s] << std::endl;
-        current_pathweight += graph[k][s];
+        current_pathweight += graph->getPathWeight(k, start);
 
         // update minimum
         min_path = std::min(min_path, current_pathweight);
