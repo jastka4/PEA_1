@@ -14,4 +14,5 @@ add_executable(Project1
         include/Graph.h
         include/Node.cpp
         include/Node.h
-        )
+        include/Timer.cpp
+        include/Timer.h)
