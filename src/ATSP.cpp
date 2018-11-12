@@ -19,6 +19,8 @@ int ATSP::getShortestRoute(Graph *graph, int start)
         }
     }
 
+    int *min_path_array = new int[graph->getVertexCount()];
+
     std::vector<int*> permutations;
     permutation(vertex->getArray(), 0, vertex->getSize() - 1, &permutations);
 
@@ -36,12 +38,20 @@ int ATSP::getShortestRoute(Graph *graph, int start)
         {
             current_pathweight += graph->getPathWeight(k, vertex->get(i));
             k = vertex->get(i);
+            min_path_array[i] = k;
         }
         current_pathweight += graph->getPathWeight(k, start);
 
         // update minimum
         min_path = std::min(min_path, current_pathweight);
     }
+
+    // print min path
+//    std::cout << start;
+//    for (int i = 0; i < graph->getVertexCount(); ++i) {
+//        std::cout << " -> " << min_path_array[i];
+//    }
+//    std::cout << std::endl;
 
     return min_path;
 }

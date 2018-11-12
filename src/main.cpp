@@ -4,6 +4,7 @@
 
 #include "ATSP.h"
 #include "../include/Graph.h"
+#include "../include/Timer.h"
 #include <iostream>
 
 using namespace std;
@@ -11,6 +12,7 @@ using namespace std;
 int main()
 {
     ATSP *atsp = new ATSP();
+    Timer *timer = new Timer();
 
     // matrix representation of graph
 //    { 0, 10, 15, 20 }
@@ -81,6 +83,10 @@ int main()
     graph->addEdge(5, 4, 38);
 
     int start = 0;
+    timer->start();
     cout << atsp->getShortestRoute(graph, start) << endl;
+    timer->stop();
+    std::cout << "Time of execution: " << timer->getTime() << " ns" << std::endl;
+
     return 0;
 }

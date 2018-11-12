@@ -25,7 +25,7 @@ Graph::~Graph()
 
 void Graph::print()
 {
-    std::cout << "Incidence matrix representation: " << std::endl;
+    std::cout << "Adjacency matrix representation: " << std::endl;
 
     size_t i, j;
 

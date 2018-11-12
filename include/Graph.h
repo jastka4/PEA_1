@@ -13,7 +13,6 @@ public:
 
 	void print();
 	void addEdge(int, int, int);
-	void removeEdge(int, int);
 	int getVertexCount() const;
 	int getPathWeight(int start, int end);
 
