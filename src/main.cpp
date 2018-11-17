@@ -2,7 +2,7 @@
 // Created by jastka4 on 03.11.18.
 //
 
-#include "ATSP.h"
+#include "BF.h"
 #include "../include/Graph.h"
 #include "../include/Timer.h"
 #include <iostream>
@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-    ATSP *atsp = new ATSP();
+    ATSP *atsp = new BF();
     Timer *timer = new Timer();
 
     // matrix representation of graph
@@ -86,6 +86,7 @@ int main()
     timer->start();
     cout << atsp->getShortestRoute(graph, start) << endl;
     timer->stop();
+    atsp->printFinalPath();
     std::cout << "Time of execution: " << timer->getTime() << " ns" << std::endl;
 
     return 0;

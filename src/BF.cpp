@@ -2,11 +2,11 @@
 // Created by jastka4 on 03.11.18.
 //
 
-#include "ATSP.h"
+#include "BF.h"
 #include <climits> //int max
 
-// implementation of traveling Salesman Problem
-int ATSP::getShortestRoute(Graph *graph, int start)
+// implementation of traveling Salesman Problem (Brute Force algorithm)
+int BF::getShortestRoute(Graph *graph, int start)
 {
     // store all vertex apart from source vertex
     Array *vertex = new Array();
@@ -19,7 +19,8 @@ int ATSP::getShortestRoute(Graph *graph, int start)
         }
     }
 
-    int *min_path_array = new int[graph->getVertexCount()];
+    path_size = graph->getVertexCount() + 1;
+    final_path = new int[path_size];
 
     std::vector<int*> permutations;
     permutation(vertex->getArray(), 0, vertex->getSize() - 1, &permutations);
@@ -34,11 +35,12 @@ int ATSP::getShortestRoute(Graph *graph, int start)
 
         // compute current path weight
         int k = start;
+        final_path[0] = start;
         for (int i = 0; i < vertex->getSize(); i++)
         {
             current_pathweight += graph->getPathWeight(k, vertex->get(i));
             k = vertex->get(i);
-            min_path_array[i] = k;
+            final_path[i + 1] = k;
         }
         current_pathweight += graph->getPathWeight(k, start);
 
@@ -46,24 +48,17 @@ int ATSP::getShortestRoute(Graph *graph, int start)
         min_path = std::min(min_path, current_pathweight);
     }
 
-    // print min path
-//    std::cout << start;
-//    for (int i = 0; i < graph->getVertexCount(); ++i) {
-//        std::cout << " -> " << min_path_array[i];
-//    }
-//    std::cout << std::endl;
-
     return min_path;
 }
 
-void ATSP::swap(int *a, int *b)
+void BF::swap(int *a, int *b)
 {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void ATSP::permutation(int *array, int start, int end, std::vector<int*> *permutations)
+void BF::permutation(int *array, int start, int end, std::vector<int*> *permutations)
 {
     if (start == end)
     {
@@ -71,9 +66,7 @@ void ATSP::permutation(int *array, int start, int end, std::vector<int*> *permut
         for (int i = 0; i <= end; ++i)
         {
             permutation[i] = array[i];
-//            std::cout << array[i] << "";
         }
-//        std::cout << std::endl;
         (*permutations).push_back(permutation);
         return;
 

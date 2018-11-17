@@ -1,19 +1,31 @@
 //
-// Created by jastka4 on 03.11.18.
+// Created by jskalska on 12/11/2018.
 //
 
 #pragma once
 
-#include "../include/Array.h"
 #include "../include/Graph.h"
-#include <vector>
 
 class ATSP
-        {
+{
 public:
-    int getShortestRoute(Graph *graph, int start);
+    virtual int getShortestRoute(Graph *graph, int start) = 0;
+    void printFinalPath()
+    {
+        // print min path
+        for (size_t i = 0; i < path_size; ++i)
+        {
+            std::cout << final_path[i];
 
-private:
-    void swap(int* a, int* b);
-    void permutation(int *array, int start, int end, std::vector<int*> *permutations);
+            if (i < path_size - 1)
+            {
+                std::cout << " -> ";
+            }
+        }
+        std::cout << std::endl;
+    }
+
+protected:
+    int *final_path;
+    int path_size;
 };

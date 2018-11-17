@@ -5,15 +5,16 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Project1
         src/main.cpp
+        src/ATSP.h
+        src/BF.cpp
+        src/BF.h
         include/Array.cpp
         include/Array.h
-        include/IndexOutOfBoundsException.h
-        src/ATSP.cpp
-        src/ATSP.h
         include/Graph.cpp
         include/Graph.h
         include/Node.cpp
         include/Node.h
         include/Timer.cpp
-        include/Timer.h)
+        include/Timer.h
+        include/IndexOutOfBoundsException.h
         include/FileNotFoundException.h)
