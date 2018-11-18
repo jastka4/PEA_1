@@ -3,15 +3,15 @@
 //
 
 #include "BF.h"
-#include "../include/Graph.h"
 #include "../include/Timer.h"
-#include <iostream>
+#include "BB.h"
 
 using namespace std;
 
 int main()
 {
     ATSP *atsp = new BF();
+    ATSP *test = new BB();
     Timer *timer = new Timer();
 
     // matrix representation of graph
@@ -87,6 +87,11 @@ int main()
     cout << atsp->getShortestRoute(graph, start) << endl;
     timer->stop();
     atsp->printFinalPath();
+    std::cout << "Time of execution: " << timer->getTime() << " ns" << std::endl;
+
+    cout << test->getShortestRoute(graph, start) << endl;
+    timer->stop();
+    test->printFinalPath();
     std::cout << "Time of execution: " << timer->getTime() << " ns" << std::endl;
 
     return 0;

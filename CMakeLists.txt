@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(Project1
         src/main.cpp
         src/ATSP.h
+        src/BB.cpp
+        src/BB.h
         src/BF.cpp
         src/BF.h
         include/Array.cpp
