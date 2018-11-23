@@ -19,4 +19,6 @@ add_executable(Project1
         include/Timer.cpp
         include/Timer.h
         include/IndexOutOfBoundsException.h
-        include/FileNotFoundException.h)
+        include/FileNotFoundException.h
+        include/FileHandler.cpp
+        include/FileHandler.h)
