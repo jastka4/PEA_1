@@ -10,6 +10,8 @@ add_executable(Project1
         src/BB.h
         src/BF.cpp
         src/BF.h
+        src/DP.cpp
+        src/DP.h
         include/Array.cpp
         include/Array.h
         include/Graph.cpp

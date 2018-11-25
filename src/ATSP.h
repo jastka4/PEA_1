@@ -10,7 +10,8 @@ class ATSP
 {
 public:
     virtual int getShortestRoute(Graph *graph, int start) = 0;
-    void printFinalPath()
+
+    virtual void printFinalPath()
     {
         // print min path
         for (size_t i = 0; i < path_size; ++i)
