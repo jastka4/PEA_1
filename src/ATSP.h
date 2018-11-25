@@ -20,10 +20,15 @@ public:
 
             if (i < path_size - 1)
             {
-                std::cout << " -> ";
+                std::cout << " - ";
             }
         }
         std::cout << std::endl;
+    }
+
+    virtual ~ATSP()
+    {
+        delete[] final_path;
     }
 
 protected:

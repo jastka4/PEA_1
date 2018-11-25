@@ -10,6 +10,7 @@ class BB : public ATSP
 {
 public:
     int getShortestRoute(Graph *graph, int start);
+    virtual ~BB();
 
 private:
     bool *visited;

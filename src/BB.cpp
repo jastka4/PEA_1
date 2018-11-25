@@ -5,6 +5,10 @@
 #include "BB.h"
 #include <climits> //int max
 
+BB::~BB() {
+    delete[] visited;
+}
+
 // Function to find the minimum edge cost
 // having an end at the vertex i
 int BB::firstMin(Graph *graph, int i)
