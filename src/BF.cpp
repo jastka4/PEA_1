@@ -40,14 +40,23 @@ int BF::getShortestRoute(Graph *graph, int start)
         {
             current_pathweight += graph->getPathWeight(k, vertex->get(i));
             k = vertex->get(i);
-            final_path[i + 1] = k;
         }
         current_pathweight += graph->getPathWeight(k, start);
-        final_path[graph->getVertexCount()] = start;
 
         // update minimum
-        min_path = std::min(min_path, current_pathweight);
+        if (min_path > current_pathweight)
+        {
+            min_path = current_pathweight;
+            for (int i = 0; i < vertex->getSize(); i++)
+            {
+                k = vertex->get(i);
+                final_path[i + 1] = k;
+            }
+            final_path[vertex->getSize() + 1] = start;
+        }
     }
+
+    delete vertex;
 
     return min_path;
 }
